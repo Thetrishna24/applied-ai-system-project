@@ -109,6 +109,17 @@ You can add more tests in `tests/test_recommender.py`.
 ## Example Output
 Images/image1.png
 
+## Evaluation
+
+### Happy Pop
+!Images/Image2.png
+
+### Chill Lofi
+!Images/Image3.png
+
+### Intense Rock
+!Images/Image4.png
+
 ## Experiments You Tried
 
 Use this section to document the experiments you ran. For example:
@@ -117,6 +128,7 @@ Use this section to document the experiments you ran. For example:
 - What happened when you added tempo or valence to the score
 - How did your system behave for different types of users
 
+I tested a smaller genre weight, and the recommendations became slightly more diverse because energy and tempo had more influence.
 ---
 
 ## Limitations and Risks
@@ -143,6 +155,16 @@ Write 1 to 2 paragraphs here about what you learned:
 
 - about how recommenders turn data into predictions
 - about where bias or unfairness could show up in systems like this
+
+This project helped me understand how recommender systems turn user preferences into scores and rankings. I learned that even a simple scoring system can produce reasonable recommendations, but small design choices like feature weights can strongly affect the final output.
+It also showed me that recommendation systems can easily become biased toward certain features or repeated items, especially when the dataset is small. Human judgment still matters when deciding whether the recommendations actually feel right.
+
+## Evaluation
+
+I tested the recommender with three user profiles: Happy Pop, Chill Lofi, and Intense Rock.
+For Happy Pop, the system recommended upbeat, energetic songs such as "Sunrise City" and "Gym Hero," which matched the profile well.
+For Chill Lofi, the recommendations shifted toward calmer and lower-energy tracks like "Library Rain," "Midnight Coding," and "Focus Flow." This suggests the energy, tempo, and genre features were working together well.
+For Intense Rock, "Storm Runner" ranked first, which made sense because it matched both genre and mood strongly. However, some non-rock songs still appeared lower in the list because they had similar energy and tempo values.
 
 
 ---
@@ -216,6 +238,12 @@ Some prompts:
 - Does it treat all users as if they have the same taste shape
 - Is it biased toward high energy or one genre by default
 - How could this be unfair if used in a real product
+
+## Limitations and Bias
+
+One limitation is that the recommender depends on a very small dataset, so the same songs can appear often across different profiles.
+Another weakness is that genre has a strong influence, which may reduce diversity in the results.
+The system also simplifies music taste into only a few features like genre, mood, energy, tempo, and valence, so it cannot capture more complex preferences such as lyrics, cultural context, or artist loyalty.
 
 ---
 
