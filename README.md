@@ -12,6 +12,9 @@ Your goal is to:
 - Reflect on how this mirrors real world AI recommenders
 
 Replace this paragraph with your own summary of what your version does.
+- My recommender compares genre, mood, energy, tempo, valence
+- Songs get higher score if they match user preferences
+- Then I rank songs and recommend the top ones
 
 ---
 
@@ -28,6 +31,43 @@ Some prompts to answer:
 - How do you choose which songs to recommend
 
 You can include a simple diagram or bullet list if helpful.
+
+This recommendation system uses a content-based approach to suggest songs to users. It compares song features such as genre, mood, energy, tempo, and valence with the user’s preferences.
+Each song is given a score based on how closely it matches the user’s taste. Songs that have the same genre and mood as the user are given higher priority. Numerical features like energy, tempo, and valence are scored based on how close they are to the user’s preferred values.
+After scoring all songs, the system ranks them from highest to lowest score and recommends the top results.
+
+## Features Used
+
+### Song Features:
+- genre
+- mood
+- energy
+- tempo_bpm
+- valence
+
+### User Profile Features:
+- preferred_genre
+- preferred_mood
+- preferred_energy
+- preferred_tempo_bpm
+- preferred_valence
+
+## Scoring Logic
+
+The system assigns a score to each song using the following rules:
+
+- +1 point if the song's genre matches the user's preferred genre
+- +1 point if the song's mood matches the user's preferred mood
+- Add higher points if the song’s energy is close to the user’s preferred energy
+- Add higher points if the song’s tempo is close to the user’s preferred tempo
+- Add higher points if the song’s valence is close to the user’s preferred valence
+
+Genre is given slightly higher importance than mood because it defines the overall type of music, while mood can vary more depending on the situation.
+
+## Scoring vs Ranking
+
+The scoring rule determines how well a single song matches the user’s preferences.
+The ranking rule sorts all songs based on their scores and selects the top results to recommend.
 
 ---
 
@@ -65,6 +105,9 @@ pytest
 You can add more tests in `tests/test_recommender.py`.
 
 ---
+
+## Example Output
+Images/image1.png
 
 ## Experiments You Tried
 
