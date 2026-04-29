@@ -1,87 +1,28 @@
-"""
-Command line runner for the Music Recommender Simulation.
-
-This file helps you quickly run and test your recommender.
-
-You will implement the functions in recommender.py:
-- load_songs
-- score_song
-- recommend_songs
-"""
-
-from src.recommender import load_songs, recommend_songs
+from src.guardrails import validate_input
+from src.recommender import recommend_songs
+from src.explainer import explain_recommendation
 
 
-def main() -> None:
-    songs = load_songs("data/songs.csv")
-    
-    print(f"Loaded songs: {len(songs)}")
-    # print(songs[0])
+def main():
+    print("🎵 MoodSync AI: Music Recommendation System")
+    print("------------------------------------------")
 
-    # Starter example profile
-    # user_prefs = {"genre": "pop", "mood": "happy", "energy": 0.8}
-    # user_prefs = {
-    # "genre": "pop",
-    # "mood": "happy",
-    # "energy": 0.8,
-    # "tempo_bpm": 120.0,
-    # "valence": 0.8
-    # }
-    profiles = [
-    {
-        "name": "Happy Pop",
-        "prefs": {
-            "genre": "pop",
-            "mood": "happy",
-            "energy": 0.8,
-            "tempo_bpm": 120.0,
-            "valence": 0.8
-        }
-    },
-    {
-        "name": "Chill Lofi",
-        "prefs": {
-            "genre": "lofi",
-            "mood": "chill",
-            "energy": 0.3,
-            "tempo_bpm": 80.0,
-            "valence": 0.5
-        }
-    },
-    {
-        "name": "Intense Rock",
-        "prefs": {
-            "genre": "rock",
-            "mood": "intense",
-            "energy": 0.9,
-            "tempo_bpm": 150.0,
-            "valence": 0.6
-        }
-    }
-   ]
+    user_mood = input("Enter your mood (happy, sad, calm, focused, motivated): ")
+    user_context = input("Enter your context (studying, gym, relaxing, commute, sleep, party): ")
 
-    # recommendations = recommend_songs(user_prefs, songs, k=5)
+    is_valid, message = validate_input(user_mood, user_context)
 
-    # print("\nTop recommendations:\n")
+    if not is_valid:
+        print(f"Error: {message}")
+        return
 
-    # for i, rec in enumerate(recommendations, start=1):
-    #     song, score, explanation = rec
-    #     print(f"{i}. {song['title']} by {song['artist']}")
-    #     print(f"   Score: {score:.2f}")
-    #     print(f"   Why: {explanation}")
-    #     print()
-    
-    for profile in profiles:
-        print(f"\n===== {profile['name']} =====\n")
+    recommendations = recommend_songs(user_mood, user_context)
 
-        recommendations = recommend_songs(profile["prefs"], songs, k=5)
+    print("\nTop Recommendations:")
+    for index, song in enumerate(recommendations, start=1):
+        print(f"\n{index}. {song['title']} by {song['artist']}")
+        print(explain_recommendation(song, user_mood, user_context))
 
-        for i, rec in enumerate(recommendations, start=1):
-            song, score, explanation = rec
-            print(f"{i}. {song['title']} by {song['artist']}")
-            print(f"   Score: {score:.2f}")
-            print(f"   Why: {explanation}")
-            print()
 
 if __name__ == "__main__":
     main()
