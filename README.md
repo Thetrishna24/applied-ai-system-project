@@ -25,9 +25,10 @@ This project extends the Module 3 Music Recommender Simulation by adding:
 
 ---
 
-## Architecture
-User Input → Guardrails → Retriever → Ranking Engine → Explanation Generator → Output
-
+## System Architecture
+![Architecture](assets/architecture.png)
+!(assets/img1.png)
+(!assets/img2.png)
 ---
 
 ## Setup
