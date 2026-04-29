@@ -27,8 +27,10 @@ This project extends the Module 3 Music Recommender Simulation by adding:
 
 ## System Architecture
 ![Architecture](assets/architecture.png)
-!(assets/img1.png)
-(!assets/img2.png)
+
+## Demo
+![Demo 1](assets/demo1.png)
+![Demo 2](assets/demo2.png)
 ---
 
 ## Setup

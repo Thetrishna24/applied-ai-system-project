@@ -28,3 +28,12 @@ Rule-based + Retrieval-Augmented Recommendation System
 ## Ethical Considerations
 - Bias in dataset
 - Not suitable for mental health advice
+
+### AI Collaboration
+This project demonstrates how retrieval-based systems can simulate intelligent behavior without relying on large pretrained models. The combination of retrieval, scoring, and explanation mimics an AI assistant pipeline.
+
+### Bias
+The dataset is small and may not represent diverse music preferences or cultures. Recommendations may be biased toward limited genres and moods.
+
+### Testing Results
+All 6 unit tests passed successfully. The system was consistent across repeated runs and correctly handled invalid inputs through guardrails.
